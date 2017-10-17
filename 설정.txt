@@ -1,0 +1,39 @@
+﻿2017-10-12(P)
+
+- 준비사항
+  - 1. Git 설치
+  - 2. NodeJS 설치(LTS버전)
+  - 에디터 설치(VS CODE, Atom...)
+  - MongoDB
+- 1. Global Dependency
+  - webpack: es6문법변환, 코드압축, 최적화, LESS, SCSS CSS로 변환, webpack-dev-server: 서버를 구축하지 않고도 서버를 열수가 있음(개발용서버)
+    - sudo npm install -g webpack webpack-dev-server
+- 2. 프로젝트 생성
+  - 디렉토리 생성
+  - 생성된 디렉토리로 이동 후 npm init(노드 프로젝트 시작)
+- 3. Dependency 및 Plugin 설치
+  - React 설치
+    - npm install --save react react-dom
+  - 개발 의존 모듈 설치
+    - babel: es6, jsx문법으로 변환
+    - react-hot-loader: 기본적으로 개발서버가 react를 호환하지 않기때문에 설정
+    - npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react
+    - npm install --save-dev react-hot-loader webpack webpack-dev-server
+- 4. webpack 설정
+  - 프로젝트 루트 디렉토리에 생성
+    - webpack.config.js
+- 번외편 create-react-app + react-hot-loader 적용 + express.js와 연동
+  - https://velopert.com/2037 --> 
+- webpack.HotModuleReplacementPlugin의 기능
+  - 수정된 파일만 리로딩을 하는것
+  - 그런대 왜 전체 페이지를 새로고침함?
+    - webpack이 어떤 파일을 어떠한 상황에 갈아 끼울수 있는지 스스로 판단을 못함
+      "if(module.hot){
+      	module.hot.accept();
+      }
+      를 추가해줘야함"
+    - module.hot.accept를 써도, state가 유지가 되지 않음
+      "해결방안: redux개발자가 만든 react-hot-loader를 webpack에 적용시켜 주면 해결"
+    - react-hot-loader 적용방법(v3.0)
+      - https://github.com/gaearon/react-hot-loader
+      - https://gist.github.com/velopert/c5b1f5f748d9aa8b78f729a321682230
